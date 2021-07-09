@@ -7,13 +7,14 @@ class Progress:
     # description - array containing initial_message, completion_message, error_message, max_val
     # progress_template - string describes progress display. Syntax: ${MV} - max value, ${CV} - current value, ${ST} - state message, ${INF} - additional information
     # states=None - dictionary containing state names and messages that will be displayed.
-    def __init__(self, description, progress_template, states=None, percentage_format="%.2f"):
+    def __init__(self, description: list, progress_template: tuple, states=None, percentage_format="%.2f"):
         """Init new progress display
 
         Args:
             description (list): description - array containing initial_message, completion_message, error_message, max_val.
             progress_template (tuple): string describes progress display. Syntax: ${MV} - max value, ${CV} - current value, ${ST} - state message, ${INF} - additional information, ${PRC} - Percentage
-            states (dict, optional): dictionary containing state names and messages that will be displayed.. Defaults to None.
+            states (dict, optional): dictionary containing state names and messages that will be displayed. Defaults to None.
+            percentage_format(str, optional): format string for percentage display. Default set to "%.2f" 
         """
         self.initial_message, self.completion_message, self.error_message, self.max_val = (
             description
@@ -167,7 +168,7 @@ class LinyProgresses:
     # progress_template - array of strings in count of initial_progresses describes progress display. Syntax: ${MV} - max value, ${CV} - current value, ${ST} - state message, ${INF} - additional information
     # states=None - dictionary containing state names and messages that will be displayed.
     def __init__(
-        self, initial_progresses, descriptions, progress_template, states=None
+        self, initial_progresses: int, descriptions: list, progress_template: tuple, states=None
     ):
         """Initialize multiline progress
 
@@ -183,14 +184,18 @@ class LinyProgresses:
             self.progresses.append(Progress(descriptions[i], progress_template, states))
 
     # add new progress with provided description
-    def append_progress(self, description):
+    def append_progress(self, description) -> int:
         """add new progress with provided description
 
         Args:
             description (list): array containing initial_message, completion_message, error_message, max_val
+        
+        Returns:
+            id(int): id of just added progress
         """
-        self.progresses.append(Progress(description, self.progress_template))
 
+        self.progresses.append(Progress(description, self.progress_template))
+        return len(self.progresses) - 1
     # move cursor up 1
     def up(self):
         """move cursor up 1

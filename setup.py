@@ -3,7 +3,7 @@ import setuptools
 
 setup(
     name = "linyP",
-    version = '1.0',
+    version = '1.1.0',
     url = "https://github.com/furrygem/linyP",
     description = "multiline progress display",
     long_description = open("docs.md", "r").read(),

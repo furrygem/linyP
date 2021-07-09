@@ -38,10 +38,14 @@ Updates percentage based on current progress and max value.
 Format and sets new percentage to be displayed
 * **new_percentage** - new percentage int
 
-## LinyProgresses(*self*, initial_progress: int, descriptions: int, progress_templates: tuple, states=None)
-### append_progress(*self*, description: list)
+## LinyProgresses(*self*, initial_progress: int, descriptions: list, progress_templates: tuple, states=None)
+### append_progress(*self*, description: list) -> int
 Add new progress with provided description
-* description - array containing initial_message, completion_message, error_message, max_val
+* **description** - array containing initial_message, completion_message, error_message, max_val
+
+**Returns:**
+
+returns id of progress that was added
 
 ### up(*self*)
 Move cursor up 1
